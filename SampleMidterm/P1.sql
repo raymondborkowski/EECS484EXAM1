@@ -1,0 +1,28 @@
+CREATE TABLE Franchisee(
+	FID INTEGER PRIMARY KEY,
+	ADDRESS VARCHAR2(255) NOT NULL
+);
+CREATE TABLE Promotion(
+	PID INTEGER PRIMARY KEY,
+	UNIQUE FID INTEGER NOT NULL,
+	end_date DATE NOT NULL,
+	FOREIGN KEY (FID) REFERENCES Franchisee(fid) on delete cascade
+);
+CREATE TABLE Menu_Item(
+	mname VARCHAR2(255) PRIMARY KEY,
+	rprice INTEGER NOT NULL,
+	calories INTEGER
+);
+CREATE TABLE offers(
+	FID INTEGER PRIMARY KEY,
+	name VARCHAR2(255) PRIMARY KEY,
+	FOREIGN KEY (FID) REFERENCES Franchisee(fid) on delete cascade,
+	FOREIGN KEY (name) REFERENCES Menu_Item(mname) on delete cascade
+);
+CREATE TABLE Sale(
+	FID INTEGER PRIMARY KEY,
+	NAme VARCHAR2(255) PRIMARY KEY,
+	sprice INTEGER NOT NULL
+	FOREIGN KEY (FID) REFERENCES Franchisee(FID) on delete cascade,
+	FOREIGN KEY name REFERENCES Menu_Item(mname) on delete cascade
+);
